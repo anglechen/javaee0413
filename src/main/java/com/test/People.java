@@ -80,8 +80,9 @@ public class People {
 		= new ClassPathXmlApplicationContext("application.xml");
 		People p4 = (People) application.getBean("p8");
 		People p9 = application.getBean(People.class);
+		p4.setAge(100);
 		System.out.println("p8 ===" + p4);
-		System.out.println("p9===" + p9);
+		System.out.println("p9===" + p9 + ":" + p9.getAge());
 		People p5 = new People();
 		
 		
