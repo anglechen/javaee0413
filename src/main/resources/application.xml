@@ -10,6 +10,31 @@
 	</bean> -->
 	<context:component-scan base-package="com.test"></context:component-scan>
 	
+	<!-- 加载jdbc的配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${jdbc.driver}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" >
+         <!-- 把dataSourc连接池注入到jdbcTemplate里面 -->
+         <property name="dataSource" ref="dataSource"></property>
+    </bean>
 	
 	
 	
