@@ -23,12 +23,17 @@ public class UserDaoImplTest {
 	public void testInsert() {
 		BeanFactory beanFactory = 
 				new ClassPathXmlApplicationContext("application.xml");
-//		UserDao userDao = (UserDao) beanFactory.getBean("userDaoImpl");
-		UserDao userDao = new UserDaoImpl();
+		UserDao userDao = (UserDao) beanFactory.getBean("userDaoImpl");
+//		UserDao userDao = new UserDaoImpl();
 		User user = new User();
 		user.setName("张三");
 		user.setPassword("123456");
+		System.out.println(beanFactory.getBean("userDaoImpl"));
+		System.out.println("=========insert=============");
 		userDao.insert(user);
+		
+		System.out.println("=========update=============");
+		userDao.update(user);
 	}
 
 	/**

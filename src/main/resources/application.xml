@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
 	
 	<!-- <bean id="people" class="com.test.People">
@@ -36,6 +38,23 @@
          <property name="dataSource" ref="dataSource"></property>
     </bean>
 	
+	
+	
+	
+	
+	<!-- aop xml配置实现 -->
+	<!-- <aop:config>
+		切入点
+		<aop:pointcut expression="execution(* com.test.web.dao.impl.UserDaoImpl.*(..) )" id="logPointcut"/>
+	
+		<aop:aspect id= "aspect" ref="logAdvice">
+			<aop:before method="before"  pointcut-ref="logPointcut"/>
+			<aop:after method="after"  pointcut-ref="logPointcut"/>
+		</aop:aspect>
+	</aop:config>
+	 -->
+	<!-- 开启自动代理 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	
 	

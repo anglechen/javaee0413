@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.test.web.aop.LogAnnotation;
 import com.test.web.dao.UserDao;
 import com.test.web.model.User;
 
@@ -30,12 +31,14 @@ public class UserDaoImpl implements UserDao {
 	
 	
 	@Override
+	@LogAnnotation(name="admin")
 	public void insert(User user) {
 		/*String sql = "insert into user(name,password)"
 				+ " values('"+ user.getName()+"','"+user.getPassword()+"')";
 		*/
 		String sql = "insert into user(name,password) values(?,?)";
 		jdbcTemplate.update(sql, user.getName(),user.getPassword());
+		System.out.println("执行sql " + sql);
 	}
 
 
@@ -47,6 +50,7 @@ public class UserDaoImpl implements UserDao {
 	/* (non-Javadoc)
 	 * @see com.test.web.dao.UserDao#update(com.test.web.model.User)
 	 */
+	@LogAnnotation(name="admin")
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
