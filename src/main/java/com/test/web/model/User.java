@@ -5,20 +5,25 @@ package com.test.web.model;
 
 
 
-import org.springframework.stereotype.Component;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Administrator
  * 用户类
  * 抽取公共类： extends BaseEntity
  */
-public class User{ /**
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Slf4j
+public class User{ 
+	/**
      * id
      */
 	private Integer id;
-	
 	/**
 	 * 名字
 	 */
@@ -37,5 +42,9 @@ public class User{ /**
 	private String remarks;
 	
 	private Integer status;
-
+	
+	
+	public void test() {
+		log.info("test。。。。。");
+	}
 }
