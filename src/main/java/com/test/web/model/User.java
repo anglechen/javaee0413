@@ -5,6 +5,8 @@ package com.test.web.model;
 
 
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
-public class User{ 
+public class User implements Serializable{ 
 	/**
      * id
      */

@@ -50,7 +50,7 @@ public class UserDaoTest {
 		User user = new User();
 		user.setName("admin");
 		List<User> lists = userDao.query(user);
-		System.out.println("==========================");
+		System.out.println("==88888888888888888========================");
 		lists = userDao.query(user);
 		for(User u : lists) {
 			System.out.println(u);
