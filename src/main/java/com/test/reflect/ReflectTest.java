@@ -3,6 +3,7 @@
  */
 package com.test.reflect;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -42,10 +43,18 @@ public class ReflectTest {
 			System.out.println(m.getName());
 		}
 		Method method = clazz.getDeclaredMethod("insert", User.class);
+		//无参数构造
 		UserDaoImpl2 userDao2 = (UserDaoImpl2) clazz.newInstance();
+		//有参数构造
+		Constructor constructor = clazz.getConstructor(String.class);
+		UserDaoImpl2 userDao3 = (UserDaoImpl2) constructor.newInstance("test属性");
+		System.out.println("userDao3" + userDao3);
+		
+		
 		System.out.println("==invoke:======");
 		method.invoke(userDao2,new User());
 //		userDao2.insert(new User());
+		
 		
 		System.out.println("结束");
 		

@@ -20,7 +20,12 @@ public class UserDaoImpl2 implements UserDao {
 	
 	private String test;
 	
+	public UserDaoImpl2() {
+	}
 	
+	public UserDaoImpl2(String t) {
+		this.test = t;
+	}
 
 	@Override
 	public void insert(User user) {
