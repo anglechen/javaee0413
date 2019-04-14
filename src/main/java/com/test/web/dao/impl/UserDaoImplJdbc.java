@@ -4,6 +4,8 @@
 package com.test.web.dao.impl;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,29 +33,23 @@ public class UserDaoImplJdbc implements UserDao {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.test.web.dao.UserDao#update(com.test.web.model.User)
-	 */
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.test.web.dao.UserDao#del(com.test.web.model.User)
-	 */
 	@Override
 	public void del(User user) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.test.web.dao.UserDao#query(com.test.web.model.User)
-	 */
 	@Override
 	public List<User> query(User user) {
+		List<Map> results = new ArrayList<>();
+		
+		List<User> userLists = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			InputStream in = UserDaoImplJdbc.class.getResourceAsStream("/jdbc.properties");
@@ -67,20 +63,53 @@ public class UserDaoImplJdbc implements UserDao {
 			
 			ResultSetMetaData metaData = resultSet.getMetaData();
 			int count = metaData.getColumnCount();
-			List<Map> results = new ArrayList<>();
+			
+			
 			while(resultSet.next()) {
 				Map map = new HashMap();
+				
+				User tempUser = new User();
+				
+				
 				for(int i = 1; i <= count ; i++) {
+					//数据库列的标签名称
+					Field field = User.class.getDeclaredField(metaData.getColumnLabel(i));
+					
+					
+					String fname = field.getName();//属性的名称
+					String sname = field.getType().getSimpleName();//获取属性类型
+					//例如：setId,setName
+					String setName = "set" + fname.substring(0, 1).toUpperCase() + fname.substring(1);
+					//按照方法名称取方法
+					Method method = User.class.getMethod(setName, field.getType());
+					//根据类型执行方法
+					if("Integer".equals(sname)) {
+						Integer value = null;
+						if(resultSet.getString(i) !=null) value = Integer.parseInt(resultSet.getString(i));
+						method.invoke(tempUser, value);
+						//tempUser.setId(value)
+					}else {
+						method.invoke(tempUser, resultSet.getString(i));
+					}
+					
+					
 					System.out.println(metaData.getColumnLabel(i));
 					map.put(metaData.getColumnLabel(i), resultSet.getString(i));
+					
+					
 				}
+				userLists.add(tempUser);
 				results.add(map);
 			}
+			
+//			System.out.println("list" + userLists);
+			
+			
 			
 			resultSet.close();
 			stat.close();
 			conn.close();
-			System.out.println(results);
+//			System.out.println(results);
 			
 			
 		} catch (Exception e) {
@@ -90,7 +119,7 @@ public class UserDaoImplJdbc implements UserDao {
 		
 		
 		
-		return null;
+		return userLists;
 	}
 	
 	

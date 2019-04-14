@@ -5,6 +5,8 @@ package com.test.web.dao.impl;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import com.test.web.dao.UserDao;
@@ -47,7 +49,10 @@ public class UserDaoImplJdbcTest {
 	@Test
 	public void testQuery() {
 		UserDao userDao = new UserDaoImplJdbc();
-		userDao.query(new User());
+		List<User> lists = userDao.query(new User());
+		for(User u : lists) {
+			System.out.println(u);
+		}
 	}
 	
 	
