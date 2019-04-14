@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.test.web.dao.UserDao;
 import com.test.web.model.User;
 
@@ -52,11 +54,14 @@ public class UserDaoImplJdbc implements UserDao {
 		List<User> userLists = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			//加载配置文件
 			InputStream in = UserDaoImplJdbc.class.getResourceAsStream("/jdbc.properties");
 			Properties props = new Properties();
 			props.load(in);
+			//获取连接
 			Connection conn = DriverManager.getConnection(props.getProperty("jdbc.url"),
 					props.getProperty("jdbc.username"), props.getProperty("jdbc.password"));
+			//创建statement
 			Statement stat = conn.createStatement();
 			String sql = "select * from user";
 			ResultSet resultSet = stat.executeQuery(sql);
@@ -64,12 +69,11 @@ public class UserDaoImplJdbc implements UserDao {
 			ResultSetMetaData metaData = resultSet.getMetaData();
 			int count = metaData.getColumnCount();
 			
-			
+			//遍历结果集
 			while(resultSet.next()) {
 				Map map = new HashMap();
 				
 				User tempUser = new User();
-				
 				
 				for(int i = 1; i <= count ; i++) {
 					//数据库列的标签名称
@@ -98,6 +102,8 @@ public class UserDaoImplJdbc implements UserDao {
 					
 					
 				}
+//				BeanUtils.copyProperties(dest, orig);
+//				BeanUtils.populate(tempUser, map);//通过工具类直接转换为bean
 				userLists.add(tempUser);
 				results.add(map);
 			}

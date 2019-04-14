@@ -20,7 +20,7 @@ import com.test.web.model.User;
  * @date  下午2:33:02
  * 
  */
-@Repository
+//@Repository
 //@Controller
 //@Service
 //@Component
@@ -73,6 +73,9 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> query(User user) {
 		String sql = "select * from user";
+		
+		
+		
 		/*resultset 转换为 bean*/
 		List<User> results = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
 		return results;
