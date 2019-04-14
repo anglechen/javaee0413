@@ -63,4 +63,10 @@ public class ReflectTest {
 		
 		
 	}
+	
+	public static Object  getInstance(Class clazz) throws InstantiationException, IllegalAccessException {
+		return clazz.newInstance();
+	}
+	
+	
 }

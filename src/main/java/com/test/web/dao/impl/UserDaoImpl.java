@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -71,8 +72,17 @@ public class UserDaoImpl implements UserDao {
 	 */
 	@Override
 	public List<User> query(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from user";
+		/*resultset 转换为 bean*/
+		List<User> results = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
+		return results;
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }
