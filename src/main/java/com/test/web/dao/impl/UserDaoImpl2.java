@@ -1,0 +1,43 @@
+/**
+ *
+ */
+package com.test.web.dao.impl;
+
+import java.util.List;
+
+import com.test.web.dao.UserDao;
+import com.test.web.model.User;
+
+/**
+ * @author aubrey
+ * @date  下午4:47:44
+ * 
+ */
+public class UserDaoImpl2 implements UserDao {
+
+	@Override
+	public void insert(User user) {
+		System.out.println("insert方法");
+	}
+
+	@Override
+	public void update(User user) {
+		System.out.println("update方法");
+		
+	}
+
+	@Override
+	public void del(User user) {
+		System.out.println("del方法");
+		
+	}
+
+	@Override
+	public List<User> query(User user) {
+		System.out.println("query方法");
+		return null;
+	}
+
+	
+	
+}

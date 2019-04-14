@@ -26,7 +26,7 @@ import com.test.web.model.User;
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate ;
 	
 	
 	
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void del(User user) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
