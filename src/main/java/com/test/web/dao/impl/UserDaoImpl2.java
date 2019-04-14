@@ -8,12 +8,19 @@ import java.util.List;
 import com.test.web.dao.UserDao;
 import com.test.web.model.User;
 
+import lombok.Data;
+
 /**
  * @author aubrey
  * @date  下午4:47:44
  * 
  */
+@Data
 public class UserDaoImpl2 implements UserDao {
+	
+	private String test;
+	
+	
 
 	@Override
 	public void insert(User user) {
