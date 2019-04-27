@@ -55,7 +55,7 @@
 	
 	
 	
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>testServlet</servlet-name>
 		<servlet-class>com.test.servlet.LoginServlet</servlet-class>
 	</servlet>
@@ -63,7 +63,7 @@
 		<servlet-name>testServlet</servlet-name>
 		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
-	
+	 -->
 	
 	
 	

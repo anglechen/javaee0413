@@ -88,15 +88,15 @@
 	
 	
 	<!-- 拦截器 -->
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/hello"/>
-			<bean class="com.test.add.TestInterceptor"></bean>
+			<mvc:mapping path="/users/**"/>
+			<bean class="com.test.other.TestInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>   -->
+	</mvc:interceptors>  
 	
 	<!-- swaggerui -->
-	<!-- <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
     <mvc:resources mapping="/webjars/**"     location="classpath:/META-INF/resources/webjars/" />
- -->
+
 </beans>

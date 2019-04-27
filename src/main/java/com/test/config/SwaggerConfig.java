@@ -13,9 +13,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-//@Configuration
-//@EnableWebMvc
-//@EnableSwagger2
+@Configuration
+@EnableWebMvc
+@EnableSwagger2
 public class SwaggerConfig {
 
 	@Bean
@@ -25,8 +25,8 @@ public class SwaggerConfig {
                 //扫描指定包中的swagger注解
                 //.apis(RequestHandlerSelectors.basePackage("com.xia.controller"))
                 //扫描所有有注解的api，用这种方式更灵活
-//                .apis(RequestHandlerSelectors.any()) //扫描指定包内所有Controller定义的Api，并产生文档内容（除了被@ApiIgnore指定的请求）。
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.any()) //扫描指定包内所有Controller定义的Api，并产生文档内容（除了被@ApiIgnore指定的请求）。
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
     }

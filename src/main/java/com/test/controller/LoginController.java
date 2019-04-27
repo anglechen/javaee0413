@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.web.model.User;
@@ -26,7 +30,6 @@ import com.test.web.service.UserService;
  * 
  */
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 
 	
@@ -39,6 +42,13 @@ public class LoginController {
 	*/
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping(value="/users/{id}",method= RequestMethod.GET )
+	@ResponseBody
+	public String test(@PathVariable("id") int userId) {
+		return userId+"";
+		
+	}
 	
 	
 	@RequestMapping("/in")
