@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.test.web.dao.UserDao;
 import com.test.web.model.User;
+import com.test.web.service.UserService;
 
 /**
  * @author aubrey
@@ -24,17 +25,17 @@ public class UserDaoImplTest {
 	public void testInsert() {
 		BeanFactory beanFactory = 
 				new ClassPathXmlApplicationContext("application.xml");
-		UserDao userDao = (UserDao) beanFactory.getBean("userDaoImpl");
+		UserService userservice = (UserService) beanFactory.getBean("userServiceImpl");
 //		UserDao userDao = new UserDaoImpl();
 		User user = new User();
 		user.setName("张三");
 		user.setPassword("123456");
-		System.out.println(beanFactory.getBean("userDaoImpl"));
+//		System.out.println(beanFactory.getBean("userDaoImpl"));
 		System.out.println("=========insert=============");
-		userDao.insert(user);
+		userservice.insert(user);
 		
 		System.out.println("=========update=============");
-		userDao.update(user);
+//		userservice.update(user);
 	}
 
 	/**
